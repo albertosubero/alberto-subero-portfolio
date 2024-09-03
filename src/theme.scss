@@ -2,11 +2,16 @@ $text-space: 20px;
 $accent-color: #FFD369;
 $primary-color: #222831;
 
-button {
+button, .button {
   padding: 10px 20px;
   border-radius: 200px;
   font-weight: 600;
+  font-size: .8rem;
   cursor: pointer;
+  text-decoration: none;
+  text-align: center;
+  font-family: inherit;
+  box-sizing: border-box;
   transition: ease all 0.3s;
   &.primary {
     background-color: $accent-color;
