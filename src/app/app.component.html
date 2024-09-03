@@ -1,6 +1,6 @@
 <section id="personal-info-section">
   <div class="container">
-    <img class="profile-image" src="/assets/images/as-profile.jpeg">
+    <img class="profile-image" src="./assets/images/as-profile.jpeg">
     <div class="personal-info">
       <h1>!Hola 👋, soy <span class="accent-color">Alberto Subero!</span></h1>
       <h2>Desarrollador Frontend Semi-Senior</h2>
@@ -31,7 +31,7 @@
         (click)="selectedProject = $index; !showProjectDetails ? showProjectDetails = true : null"
         >
           <!-- @if (selectedProject != $index) {
-            <img class="open-icon" src="/assets/images/icons/open-icon-2.svg">
+            <img class="open-icon" src="./assets/images/icons/open-icon-2.svg">
           } -->
         </div>
       }
@@ -42,7 +42,7 @@
           <h3 class="accent-color">
             {{ projects[selectedProject].title }}
             <a [href]="projects[selectedProject].url" target="_blank">
-              <img class="open-icon" src="/assets/images/icons/open-icon.png">
+              <img class="open-icon" src="./assets/images/icons/open-icon.png">
             </a>
           </h3>
           <p>{{ projects[selectedProject].description }}</p>

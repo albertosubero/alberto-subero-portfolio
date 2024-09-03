@@ -4,7 +4,7 @@
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
-    "build": "ng build",
+    "build": "ng build --output-path docs --base-href /alberto-subero-portfolio/",
     "watch": "ng build --watch --configuration development",
     "test": "ng test",
     "serve:ssr:alberto-subero-portfolio": "node dist/alberto-subero-portfolio/server/server.mjs"
