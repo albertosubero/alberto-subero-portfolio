@@ -1,0 +1,119 @@
+<section id="personal-info-section">
+  <div class="container">
+    <img class="profile-image" src="/assets/images/as-profile.jpeg">
+    <div class="personal-info">
+      <h1>!Hola 👋, soy <span class="accent-color">Alberto Subero!</span></h1>
+      <h2>Desarrollador Frontend Semi-Senior</h2>
+      <p>Caracas, Venezuela</p>
+      <app-social-buttons />
+      <app-actions-buttons />
+    </div>
+  </div>
+</section>
+
+<section id="about-me">
+  <div class="container">
+    <h2 class="section-title">Sobre mí</h2>
+    <p>Con más 8 años de experiencia, he convertido el Frontend en mi verdadera pasión y disfruto mucho todo el proceso de creación de UIs. Desde la primera lluvia de ideas, wireframes, maquetas, diseño, hasta el producto final. Además, complemento mi stack con conocimientos sólidos en el área de Backend, Bases de datos y desarrollo de API.</p>
+  </div>
+</section>
+
+<section id="projects">
+  <div class="container">
+    <h2 class="section-title">Proyectos & participaciones</h2>
+    <div class="bento bento-hover">
+      @for (project of projects; track $index) {
+        <div 
+        class="bento-card" 
+        [ngClass]="{ 'no-active': selectedProject != $index && showProjectDetails }"
+        [ngStyle]="{'background-image': 'url(' + project.images[0] + ')'}" 
+        [style.background-color]="project.color"
+        (click)="selectedProject = $index; !showProjectDetails ? showProjectDetails = true : null"
+        >
+          <!-- @if (selectedProject != $index) {
+            <img class="open-icon" src="/assets/images/icons/open-icon-2.svg">
+          } -->
+        </div>
+      }
+    </div>
+    @if (showProjectDetails) {
+      <div class="project-details">
+        <div class="project-info">
+          <h3 class="accent-color">
+            {{ projects[selectedProject].title }}
+            <a [href]="projects[selectedProject].url" target="_blank">
+              <img class="open-icon" src="/assets/images/icons/open-icon.png">
+            </a>
+          </h3>
+          <p>{{ projects[selectedProject].description }}</p>
+          <div class="card-icons">
+            @for (skill of projects[selectedProject].technologies; track $index) {
+              <i [class]="skill"></i>
+            }
+          </div>
+        </div>
+        <div class="project-pictures">
+          @for (image of projects[selectedProject].images | slice:1:projects[selectedProject].images.length; track $index) {
+            <img class="project-picture" [src]="image">
+          }
+        </div>
+      </div>
+    }
+  </div>
+</section>
+
+<section id="technologies">
+  <div class="container">
+    <h2 class="section-title">Tecnologías</h2>
+    <div class="technologies-badges">
+      @for (skill of skills; track $index) {
+        <button class="opacity">
+          <i [class]="skill.icon"></i>
+          {{ skill.name }}
+        </button>
+      }
+    </div>
+  </div>
+</section>
+
+<section id="experience">
+  <div class="container">
+    <h2 class="section-title">Experiencia</h2>
+    <div class="info-card" [ngClass]="{ 'columns': experiencesLimit == experiences.length }">
+      @for (experience of experiences | slice: 0 : experiencesLimit; track $index) {
+        <div class="card-info">
+          <h3 class="card-title">{{ experience.title }}</h3>
+          <div class="card-sub-title accent-color">{{ experience.company }} | {{ experience.type }} | {{ experience.date }}</div>
+          <p class="card-text">{{ experience.detail }}</p>
+          <div class="card-icons">
+            @for (skill of experience.technologies; track $index) {
+              <i [class]="skill"></i>
+            }
+          </div>
+        </div>
+      }
+    </div>
+    @if (experiencesLimit != experiences.length) {
+      <div class="show-more">
+        <button class="primary" (click)="experiencesLimit = experiences.length">Ver más</button>
+      </div>
+    }
+  </div>
+</section>
+
+<section id="education">
+  <div class="container">
+    <h2 class="section-title">Formación</h2>
+    <div class="timeline-item" date-is='2018'>
+      <h3>Diplomado de Programación</h3>
+      <p class="accent-color">Instituto de Nuevas Tecnologías Uneweb</p>
+    </div>
+
+    <div class="timeline-item" date-is='2017'>
+      <h3>Programación Web Full Stack</h3>
+      <p class="accent-color">Acamica University</p>
+    </div>
+  </div>
+</section>
+
+<app-footer />
