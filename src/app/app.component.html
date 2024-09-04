@@ -41,9 +41,6 @@
         <div class="project-info">
           <h3 class="accent-color">
             {{ projects[selectedProject].title }}
-            <a [href]="projects[selectedProject].url" target="_blank">
-              <img class="open-icon" src="./assets/images/icons/open-icon.png">
-            </a>
           </h3>
           <p>{{ projects[selectedProject].description }}</p>
           <div class="card-icons">
@@ -51,6 +48,7 @@
               <i [class]="skill"></i>
             }
           </div>
+          <a class="button outline" [href]="projects[selectedProject].url" target="_blank">Ver más</a>
         </div>
         <div class="project-pictures">
           @for (image of projects[selectedProject].images | slice:1:projects[selectedProject].images.length; track $index) {
