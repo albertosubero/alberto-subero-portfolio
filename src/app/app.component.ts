@@ -7,6 +7,8 @@ import { experienceI, experiences } from './utils/jobs-experiences';
 import { CommonModule } from '@angular/common';
 import { projectI, projects } from './utils/projects';
 import { FooterComponent } from './components/footer/footer.component';
+import * as AOS from 'aos';
+
 @Component({
   selector: 'app-root',
   standalone: true,
@@ -23,4 +25,17 @@ export class AppComponent {
   experiencesLimit: number = 2;
   selectedProject: number = 0;
   showProjectDetails: boolean = true;
+
+  ngOnInit() {
+    window.scrollTo(0, 0)
+  }
+
+  ngAfterViewInit() {
+    document.onreadystatechange = function () {
+      if (document.readyState == "complete") {
+        AOS.init();
+        window.addEventListener('scroll', AOS.refresh);
+      } 
+    }
+  }
 }

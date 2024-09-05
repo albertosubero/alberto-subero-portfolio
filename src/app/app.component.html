@@ -1,10 +1,10 @@
-<section id="personal-info-section">
+<section id="personal-info-section" data-aos="fade-down" data-aos-delay="200">
   <div class="container">
     <img class="profile-image" src="./assets/images/as-profile-2024.png">
     <div class="personal-info">
       <h1>!Hola 👋, soy <span class="accent-color">Alberto Subero!</span></h1>
       <h2>Desarrollador Frontend Semi-Senior</h2>
-      <p>Caracas, Venezuela</p>
+      <!-- <p>Caracas, Venezuela</p> -->
       <app-social-buttons />
       <app-actions-buttons />
     </div>
@@ -13,12 +13,12 @@
 
 <section id="about-me">
   <div class="container">
-    <h2 class="section-title">Sobre mí</h2>
-    <p>Con más 8 años de experiencia, he convertido el Frontend en mi verdadera pasión y disfruto mucho todo el proceso de creación de UIs. Desde la primera lluvia de ideas, wireframes, maquetas, diseño, hasta el producto final. Además, complemento mi stack con conocimientos sólidos en el área de Backend, Bases de datos y desarrollo de API.</p>
+    <h2 class="section-title" data-aos="fade-right" data-aos-delay="200">Sobre mí</h2>
+    <p data-aos="fade-left" data-aos-delay="400">Con más 8 años de experiencia, he convertido el Frontend en mi verdadera pasión y disfruto mucho todo el proceso de creación de UIs. Desde la primera lluvia de ideas, wireframes, maquetas, diseño, hasta el producto final. Además, complemento mi stack con conocimientos sólidos en el área de Backend, Bases de datos y desarrollo de API.</p>
   </div>
 </section>
 
-<section id="projects">
+<section id="projects" data-aos="fade" data-aos-delay="400">
   <div class="container">
     <h2 class="section-title">Proyectos & participaciones</h2>
     <div class="bento bento-hover">
@@ -60,7 +60,7 @@
   </div>
 </section>
 
-<section id="technologies">
+<section id="technologies" data-aos="fade" data-aos-delay="400">
   <div class="container">
     <h2 class="section-title">Tecnologías</h2>
     <div class="technologies-badges">
@@ -76,8 +76,8 @@
 
 <section id="experience">
   <div class="container">
-    <h2 class="section-title">Experiencia</h2>
-    <div class="info-card" [ngClass]="{ 'columns': experiencesLimit == experiences.length }">
+    <h2 class="section-title" data-aos="fade-right" data-aos-delay="200">Experiencia</h2>
+    <div class="info-card" [ngClass]="{ 'columns': experiencesLimit == experiences.length }" data-aos="flip-up" data-aos-delay="400">
       @for (experience of experiences | slice: 0 : experiencesLimit; track $index) {
         <div class="card-info">
           <h3 class="card-title">{{ experience.title }}</h3>
@@ -92,7 +92,7 @@
       }
     </div>
     @if (experiencesLimit != experiences.length) {
-      <div class="show-more">
+      <div class="show-more" data-aos="fade" data-aos-delay="400">
         <button class="primary" (click)="experiencesLimit = experiences.length">Ver más</button>
       </div>
     }
@@ -101,7 +101,7 @@
 
 <section id="education">
   <div class="container">
-    <h2 class="section-title">Formación</h2>
+    <h2 class="section-title" data-aos="fade-right" data-aos-delay="200">Formación</h2>
     <div class="timeline-item" date-is='2018'>
       <h3>Diplomado de Programación</h3>
       <p class="accent-color">Instituto de Nuevas Tecnologías Uneweb</p>
