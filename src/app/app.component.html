@@ -4,7 +4,8 @@
     <div class="personal-info">
       <h1>!Hola 👋, soy <span class="accent-color">Alberto Subero!</span></h1>
       <h2>Desarrollador Frontend Semi-Senior</h2>
-      <!-- <p>Caracas, Venezuela</p> -->
+      <!-- <p>Bogotá, Colombia</p> -->
+       <p class="accent-color">⦾ Disponible para trabajar</p>
       <app-social-buttons />
       <app-actions-buttons />
     </div>
@@ -14,14 +15,14 @@
 <section id="about-me">
   <div class="container">
     <h2 class="section-title" data-aos="fade-right" data-aos-delay="200">Sobre mí</h2>
-    <p data-aos="fade-left" data-aos-delay="400">Con más 8 años de experiencia, he convertido el Frontend en mi verdadera pasión y disfruto mucho todo el proceso de creación de UIs. Desde la primera lluvia de ideas, wireframes, maquetas, diseño, hasta el producto final. Además, complemento mi stack con conocimientos sólidos en el área de Backend, Bases de datos y desarrollo de API.</p>
+    <p data-aos="fade-up" data-aos-delay="400">Con más 8 años de experiencia, he convertido el Frontend en mi verdadera pasión y disfruto mucho todo el proceso de creación de UIs. Desde la primera lluvia de ideas, wireframes, maquetas, diseño, hasta el producto final. Además, complemento mi stack con conocimientos sólidos en el área de Backend, Bases de datos y desarrollo de API.</p>
   </div>
 </section>
 
-<section id="projects" data-aos="fade" data-aos-delay="400">
+<section id="projects">
   <div class="container">
-    <h2 class="section-title">Proyectos & participaciones</h2>
-    <div class="bento bento-hover">
+    <h2 class="section-title" data-aos="fade-right" data-aos-delay="200">Proyectos & participaciones</h2>
+    <div class="bento bento-hover" data-aos="flip-up" data-aos-delay="400">
       @for (project of projects; track $index) {
         <div 
         class="bento-card" 
@@ -37,7 +38,7 @@
       }
     </div>
     @if (showProjectDetails) {
-      <div class="project-details">
+      <div class="project-details" data-aos="fade" data-aos-delay="400">
         <div class="project-info">
           <h3 class="accent-color">
             {{ projects[selectedProject].title }}
@@ -60,10 +61,10 @@
   </div>
 </section>
 
-<section id="technologies" data-aos="fade" data-aos-delay="400">
+<section id="technologies">
   <div class="container">
-    <h2 class="section-title">Tecnologías</h2>
-    <div class="technologies-badges">
+    <h2 class="section-title" data-aos="fade-right" data-aos-delay="200">Tecnologías</h2>
+    <div class="technologies-badges" data-aos="fade" data-aos-delay="400">
       @for (skill of skills; track $index) {
         <button class="opacity">
           <i [class]="skill.icon"></i>
@@ -102,12 +103,12 @@
 <section id="education">
   <div class="container">
     <h2 class="section-title" data-aos="fade-right" data-aos-delay="200">Formación</h2>
-    <div class="timeline-item" date-is='2018'>
+    <div class="timeline-item" date-is='2018' data-aos="fade" data-aos-delay="400" >
       <h3>Diplomado de Programación</h3>
       <p class="accent-color">Instituto de Nuevas Tecnologías Uneweb</p>
     </div>
 
-    <div class="timeline-item" date-is='2017'>
+    <div class="timeline-item" date-is='2017' data-aos="fade" data-aos-delay="400">
       <h3>Programación Web Full Stack</h3>
       <p class="accent-color">Acamica University</p>
     </div>
