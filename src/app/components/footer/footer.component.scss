@@ -40,7 +40,13 @@ footer {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  p {
+  .copy-text {
+    display: flex;
+    align-items: center;
+    gap: 5px;
     font-size: .8rem;
+    img {
+      width: 20px;
+    }
   }
 }
