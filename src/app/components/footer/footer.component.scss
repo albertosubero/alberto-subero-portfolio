@@ -1,11 +1,11 @@
 section {
   &#pre-footer {
     text-align: center;
-    h1 {
+    .pre-footer-title {
       font-size: 2.5rem;
       margin-bottom: 10px;
     }
-    h2 {
+    .pre-footer-subtitle {
       font-weight: 600;
       margin-bottom: 40px;
     }
@@ -15,10 +15,10 @@ section {
       }
     }
     @media (width <= 576px) {
-      h1 {
+      .pre-footer-title {
         font-size: 2rem;
       }
-      h2 {
+      .pre-footer-subtitle {
         font-size: 1.2rem;
       }
     }

@@ -1,118 +1,211 @@
-<section id="personal-info-section" data-aos="fade-down" data-aos-delay="200">
-  <div class="container">
-    <img class="profile-image" src="./assets/images/as-profile-2024.png">
-    <div class="personal-info">
-      <h1>!Hola 👋, soy <span class="accent-color">Alberto Subero!</span></h1>
-      <h2>Desarrollador Frontend Semi-Senior</h2>
-      <!-- <p>Bogotá, Colombia</p> -->
-       <p class="accent-color">⦾ Disponible para trabajar</p>
-      <app-social-buttons />
-      <app-actions-buttons />
+<main>
+  <section id="personal-info-section" data-aos="fade-down" data-aos-delay="200">
+    <div class="container">
+      <img
+        class="profile-image"
+        src="./assets/images/alberto-subero.jpeg"
+        alt="Alberto Subero, Senior Frontend Developer especializado en Angular"
+        width="200"
+        height="200"
+      />
+      <div class="personal-info">
+        <h1>!Hola 👋, soy <span class="accent-color">Alberto Subero!</span></h1>
+        <h2>Senior Frontend Developer | Angular</h2>
+        <p>Montevideo, Uruguay</p>
+        <p class="accent-color">⦾ Disponible para trabajar</p>
+        <app-social-buttons />
+        <app-actions-buttons />
+      </div>
     </div>
-  </div>
-</section>
+  </section>
 
-<section id="about-me">
-  <div class="container">
-    <h2 class="section-title" data-aos="fade-right" data-aos-delay="200">Sobre mí</h2>
-    <p data-aos="fade-up" data-aos-delay="400">Con más 8 años de experiencia, he convertido el Frontend en mi verdadera pasión y disfruto mucho todo el proceso de creación de UIs. Desde la primera lluvia de ideas, wireframes, maquetas, diseño, hasta el producto final. Además, complemento mi stack con conocimientos sólidos en el área de Backend, Bases de datos y desarrollo de API.</p>
-  </div>
-</section>
-
-<section id="projects">
-  <div class="container">
-    <h2 class="section-title" data-aos="fade-right" data-aos-delay="200">Proyectos & participaciones</h2>
-    <div class="bento bento-hover" data-aos="flip-up" data-aos-delay="400">
-      @for (project of projects; track $index) {
-        <div 
-        class="bento-card" 
-        [ngClass]="{ 'no-active': selectedProject != $index && showProjectDetails }"
-        [ngStyle]="{'background-image': 'url(' + project.images[0] + ')'}" 
-        [style.background-color]="project.color"
-        (click)="selectedProject = $index; !showProjectDetails ? showProjectDetails = true : null"
-        >
-          <!-- @if (selectedProject != $index) {
-            <img class="open-icon" src="./assets/images/icons/open-icon-2.svg">
-          } -->
-        </div>
-      }
+  <section id="about-me">
+    <div class="container">
+      <h2 class="section-title" data-aos="fade-right" data-aos-delay="200">
+        Sobre mí
+      </h2>
+      <p data-aos="fade-up" data-aos-delay="400">
+        Con más de 10 años de experiencia como Senior Frontend Developer, me he
+        especializado en Angular y su ecosistema: arquitecturas escalables,
+        liderazgo técnico y modernización de productos legacy para empresas B2B
+        y B2C en Europa y Latinoamérica. Disfruto todo el proceso de creación de
+        UIs, desde la primera lluvia de ideas, wireframes y maquetas hasta el
+        producto final. Complemento mi stack con NestJS, SQL y herramientas de
+        desarrollo asistido por IA como Claude Code y GitHub Copilot.
+      </p>
     </div>
-    @if (showProjectDetails) {
-      <div class="project-details" data-aos="fade" data-aos-delay="400">
-        <div class="project-info">
-          <h3 class="accent-color">
-            {{ projects[selectedProject].title }}
-          </h3>
-          <p>{{ projects[selectedProject].description }}</p>
-          <div class="card-icons">
-            @for (skill of projects[selectedProject].technologies; track $index) {
-              <i [class]="skill"></i>
+  </section>
+
+  <section id="projects">
+    <div class="container">
+      <h2 class="section-title" data-aos="fade-right" data-aos-delay="200">
+        Proyectos & participaciones
+      </h2>
+      <div class="bento bento-hover" data-aos="flip-up" data-aos-delay="400">
+        @for (project of projects; track $index) {
+          <div
+            class="bento-card"
+            role="button"
+            tabindex="0"
+            [attr.aria-label]="'Ver detalles del proyecto ' + project.title"
+            [ngClass]="{
+              'no-active': selectedProject != $index && showProjectDetails,
+            }"
+            [ngStyle]="{ 'background-image': 'url(' + project.images[0] + ')' }"
+            [style.background-color]="project.color"
+            (click)="
+              selectedProject = $index;
+              !showProjectDetails ? (showProjectDetails = true) : null
+            "
+          >
+            @if (selectedProject != $index) {
+              <img
+                class="open-icon"
+                src="./assets/images/icons/open-icon-2.svg"
+              />
             }
           </div>
-          <a class="button outline" [href]="projects[selectedProject].url" target="_blank">Ver más</a>
-        </div>
-        <div class="project-pictures">
-          @for (image of projects[selectedProject].images | slice:1:projects[selectedProject].images.length; track $index) {
-            <img class="project-picture" [src]="image">
-          }
-        </div>
+        }
       </div>
-    }
-  </div>
-</section>
-
-<section id="technologies">
-  <div class="container">
-    <h2 class="section-title" data-aos="fade-right" data-aos-delay="200">Tecnologías</h2>
-    <div class="technologies-badges" data-aos="fade" data-aos-delay="400">
-      @for (skill of skills; track $index) {
-        <button class="opacity">
-          <i [class]="skill.icon"></i>
-          {{ skill.name }}
-        </button>
-      }
-    </div>
-  </div>
-</section>
-
-<section id="experience">
-  <div class="container">
-    <h2 class="section-title" data-aos="fade-right" data-aos-delay="200">Experiencia</h2>
-    <div class="info-card" [ngClass]="{ 'columns': experiencesLimit == experiences.length }" data-aos="flip-up" data-aos-delay="400">
-      @for (experience of experiences | slice: 0 : experiencesLimit; track $index) {
-        <div class="card-info">
-          <h3 class="card-title">{{ experience.title }}</h3>
-          <div class="card-sub-title accent-color">{{ experience.company }} | {{ experience.type }} | {{ experience.date }}</div>
-          <p class="card-text">{{ experience.detail }}</p>
-          <div class="card-icons">
-            @for (skill of experience.technologies; track $index) {
-              <i [class]="skill"></i>
+      @if (showProjectDetails) {
+        <article class="project-details" data-aos="fade" data-aos-delay="400">
+          <div class="project-info">
+            <h3 class="accent-color">
+              {{ projects[selectedProject].title }}
+            </h3>
+            <p>{{ projects[selectedProject].description }}</p>
+            <div class="card-icons">
+              @for (
+                skill of projects[selectedProject].technologies;
+                track $index
+              ) {
+                <i [class]="skill"></i>
+              }
+            </div>
+            <a
+              class="button outline"
+              [href]="projects[selectedProject].url"
+              target="_blank"
+              rel="noopener noreferrer"
+              >Ver más</a
+            >
+          </div>
+          <div class="project-pictures">
+            @for (
+              image of projects[selectedProject].images
+                | slice: 1 : projects[selectedProject].images.length;
+              track image
+            ) {
+              <div class="project-picture-frame">
+                <img
+                  class="project-picture"
+                  [src]="image"
+                  [alt]="
+                    'Captura del proyecto ' + projects[selectedProject].title
+                  "
+                  decoding="async"
+                  (load)="onPictureLoad($event)"
+                />
+              </div>
             }
           </div>
+        </article>
+      }
+    </div>
+  </section>
+
+  <section id="technologies">
+    <div class="container">
+      <h2 class="section-title" data-aos="fade-right" data-aos-delay="200">
+        Tecnologías
+      </h2>
+      <div class="technologies-badges" data-aos="fade" data-aos-delay="400">
+        @for (skill of skills; track $index) {
+          <button class="opacity" type="button">
+            <i [class]="skill.icon" aria-hidden="true"></i>
+            {{ skill.name }}
+          </button>
+        }
+      </div>
+      <p class="technologies-extra" data-aos="fade" data-aos-delay="400">
+        También trabajo con Angular Signals, NgRx, PrimeNG, Ant Design,
+        Prettier, Unit Testing, Clean Code, Patrón MVC, OOP, Pixel Perfect,
+        GitFlow, SCRUM y desarrollo asistido por IA con Claude Code, GitHub
+        Copilot y Prompt Engineering.
+      </p>
+    </div>
+  </section>
+
+  <section id="experience">
+    <div class="container">
+      <h2 class="section-title" data-aos="fade-right" data-aos-delay="200">
+        Experiencia
+      </h2>
+      <div
+        class="info-card"
+        [ngClass]="{ columns: experiencesLimit == experiences.length }"
+        data-aos="flip-up"
+        data-aos-delay="400"
+      >
+        @for (experience of experiences; track $index) {
+          <article
+            class="card-info"
+            [class.is-collapsed]="$index >= experiencesLimit"
+          >
+            <h3 class="card-title">{{ experience.title }}</h3>
+            <div class="card-sub-title accent-color">
+              {{ experience.company }} | {{ experience.type }} |
+              {{ experience.date }}
+            </div>
+            <p class="card-text">{{ experience.detail }}</p>
+            <div class="card-icons">
+              @for (skill of experience.technologies; track $index) {
+                <i [class]="skill" aria-hidden="true"></i>
+              }
+            </div>
+          </article>
+        }
+      </div>
+      @if (experiencesLimit != experiences.length) {
+        <div class="show-more" data-aos="fade" data-aos-delay="400">
+          <button
+            class="primary"
+            type="button"
+            (click)="experiencesLimit = experiences.length"
+          >
+            Ver más
+          </button>
         </div>
       }
     </div>
-    @if (experiencesLimit != experiences.length) {
-      <div class="show-more" data-aos="fade" data-aos-delay="400">
-        <button class="primary" (click)="experiencesLimit = experiences.length">Ver más</button>
+  </section>
+
+  <section id="education">
+    <div class="container">
+      <h2 class="section-title" data-aos="fade-right" data-aos-delay="200">
+        Formación
+      </h2>
+      <div
+        class="timeline-item"
+        date-is="2018"
+        data-aos="fade"
+        data-aos-delay="400"
+      >
+        <h3>Diplomado de Programación</h3>
+        <p class="accent-color">Instituto de Nuevas Tecnologías Uneweb</p>
       </div>
-    }
-  </div>
-</section>
 
-<section id="education">
-  <div class="container">
-    <h2 class="section-title" data-aos="fade-right" data-aos-delay="200">Formación</h2>
-    <div class="timeline-item" date-is='2018' data-aos="fade" data-aos-delay="400" >
-      <h3>Diplomado de Programación</h3>
-      <p class="accent-color">Instituto de Nuevas Tecnologías Uneweb</p>
+      <div
+        class="timeline-item"
+        date-is="2017"
+        data-aos="fade"
+        data-aos-delay="400"
+      >
+        <h3>Programación Web Full Stack</h3>
+        <p class="accent-color">Acamica University</p>
+      </div>
     </div>
-
-    <div class="timeline-item" date-is='2017' data-aos="fade" data-aos-delay="400">
-      <h3>Programación Web Full Stack</h3>
-      <p class="accent-color">Acamica University</p>
-    </div>
-  </div>
-</section>
+  </section>
+</main>
 
 <app-footer />

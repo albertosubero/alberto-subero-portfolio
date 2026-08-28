@@ -28,6 +28,31 @@ export class AppComponent {
 
   ngOnInit() {
     window.scrollTo(0, 0)
+    this.preloadProjectImages()
+  }
+
+  onPictureLoad(event: Event) {
+    const picture = event.target as HTMLImageElement;
+    picture.classList.add('is-loaded');
+    picture.parentElement?.classList.add('is-loaded');
+  }
+
+  // Precarga las imágenes de los proyectos cuando el navegador está libre,
+  // para que el cambio entre proyectos sea instantáneo.
+  private preloadProjectImages() {
+    const preload = () => {
+      for (const project of this.projects) {
+        for (const source of project.images) {
+          new Image().src = source;
+        }
+      }
+    };
+
+    if ('requestIdleCallback' in window) {
+      window.requestIdleCallback(preload);
+    } else {
+      setTimeout(preload, 2000);
+    }
   }
 
   ngAfterViewInit() {
