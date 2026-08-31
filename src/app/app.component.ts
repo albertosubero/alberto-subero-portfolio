@@ -7,12 +7,13 @@ import { experienceI, experiences } from './utils/jobs-experiences';
 import { CommonModule } from '@angular/common';
 import { projectI, projects } from './utils/projects';
 import { FooterComponent } from './components/footer/footer.component';
+import { SpaceBackgroundComponent } from './components/space-background/space-background.component';
 import * as AOS from 'aos';
 
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [RouterOutlet, CommonModule, SocialButtonsComponent, ActionsButtonsComponent, FooterComponent],
+  imports: [RouterOutlet, CommonModule, SocialButtonsComponent, ActionsButtonsComponent, FooterComponent, SpaceBackgroundComponent],
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss'
 })

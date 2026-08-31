@@ -9,14 +9,10 @@ html, body, h1, h2, h3, h4, h5, h6, p {
 }
 
 body {
-  background-color: $primary-color;
   color: #FFFFFF;
   font-family: "Montserrat", sans-serif;
   letter-spacing: 0.2px;
-  //background: linear-gradient(-45deg, #222831, #172233, #222831, #222831);
-  background: radial-gradient(ellipse at bottom, #022227 0%, #000000 100%);
-	background-size: 400% 400%;
-	animation: gradient 15s ease infinite;
+  background-color: #000206;
   overflow-x: hidden;
   @media (max-width: 992px) {
     padding: 0 2rem;
@@ -33,18 +29,6 @@ p {
 
 .accent-color {
   color: $accent-color;
-}
-
-@keyframes gradient {
-	0% {
-		background-position: 0% 50%;
-	}
-	50% {
-		background-position: 100% 50%;
-	}
-	100% {
-		background-position: 0% 50%;
-	}
 }
 
 section {
