@@ -1,4 +1,4 @@
-import { AfterViewInit, Component, ElementRef, NgZone, OnDestroy, ViewChild } from '@angular/core';
+import { AfterViewInit, Component, ElementRef, NgZone, OnDestroy, ViewChild, ChangeDetectionStrategy } from '@angular/core';
 
 interface Star {
   x: number;
@@ -21,6 +21,7 @@ interface ShootingStar {
     selector: 'app-space-background',
     imports: [],
     templateUrl: './space-background.component.html',
+    changeDetection: ChangeDetectionStrategy.Eager,
     styleUrl: './space-background.component.scss'
 })
 export class SpaceBackgroundComponent implements AfterViewInit, OnDestroy {

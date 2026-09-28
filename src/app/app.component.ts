@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, ChangeDetectionStrategy } from '@angular/core';
 import { skillI, skills } from './utils/skills';
 import { SocialButtonsComponent } from './components/social-buttons/social-buttons.component';
 import { ActionsButtonsComponent } from './components/actions-buttons/actions-buttons.component';
@@ -13,6 +13,7 @@ import * as AOS from 'aos';
     selector: 'app-root',
     imports: [CommonModule, SocialButtonsComponent, ActionsButtonsComponent, FooterComponent, SpaceBackgroundComponent],
     templateUrl: './app.component.html',
+    changeDetection: ChangeDetectionStrategy.Eager,
     styleUrl: './app.component.scss'
 })
 export class AppComponent {
