@@ -35,7 +35,9 @@
               "src/styles.scss",
               "node_modules/aos/dist/aos.css"
             ],
-            "scripts": ["node_modules/aos/dist/aos.js"],
+            "scripts": [
+              "node_modules/aos/dist/aos.js"
+            ],
             "allowedCommonJsDependencies": [
               "aos"
             ]
@@ -82,6 +84,7 @@
         "test": {
           "builder": "@angular-devkit/build-angular:karma",
           "options": {
+            "karmaConfig": "karma.conf.js",
             "polyfills": [
               "zone.js",
               "zone.js/testing"
