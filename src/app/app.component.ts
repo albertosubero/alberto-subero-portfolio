@@ -7,11 +7,12 @@ import { CommonModule } from '@angular/common';
 import { projectI, projects } from './utils/projects';
 import { FooterComponent } from './components/footer/footer.component';
 import { SpaceBackgroundComponent } from './components/space-background/space-background.component';
+import { ApproachesSection } from './sections/approaches/approaches.section';
 import * as AOS from 'aos';
 
 @Component({
     selector: 'app-root',
-    imports: [CommonModule, SocialButtonsComponent, ActionsButtonsComponent, FooterComponent, SpaceBackgroundComponent],
+    imports: [CommonModule, SocialButtonsComponent, ActionsButtonsComponent, FooterComponent, SpaceBackgroundComponent, ApproachesSection],
     templateUrl: './app.component.html',
     changeDetection: ChangeDetectionStrategy.Eager,
     styleUrl: './app.component.scss'

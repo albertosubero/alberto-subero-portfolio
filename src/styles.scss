@@ -145,3 +145,34 @@ button, .button {
     }
   }
 }
+
+
+/* Utilidad: visible solo para lectores de pantalla */
+.visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+/* Resaltado de codigo: las clases las emite highlight.js en build, aqui solo
+   se mapean a la paleta del sitio. Cero JavaScript de resaltado en runtime. */
+.hljs-keyword,
+.hljs-built_in { color: #ff9ecb; }
+.hljs-title,
+.hljs-title.function_ { color: #8fd7ff; }
+.hljs-title.class_ { color: #ffd369; }
+.hljs-string,
+.hljs-regexp { color: #b7e58a; }
+.hljs-number,
+.hljs-literal { color: #ffb168; }
+.hljs-comment { color: #ffffff5c; font-style: italic; }
+.hljs-attr,
+.hljs-property { color: #d7c4ff; }
+.hljs-params { color: #e6e6e6; }
+.hljs-type { color: #ffd369; }

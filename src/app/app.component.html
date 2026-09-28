@@ -116,6 +116,19 @@
     </div>
   </section>
 
+  <section id="approaches">
+    <div class="container">
+      <h2 class="section-title" data-aos="fade-right" data-aos-delay="200">Mismo problema, tres enfoques</h2>
+      @defer (on viewport) {
+        <app-approaches />
+      } @placeholder (minimum 200ms) {
+        <div class="approaches-placeholder" aria-hidden="true"></div>
+      } @loading (after 100ms; minimum 300ms) {
+        <p class="approaches-loading">Cargando el laboratorio…</p>
+      }
+    </div>
+  </section>
+
   <section id="technologies">
     <div class="container">
       <h2 class="section-title" data-aos="fade-right" data-aos-delay="200">

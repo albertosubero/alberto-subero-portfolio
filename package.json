@@ -7,7 +7,11 @@
     "build": "ng build --base-href /",
     "watch": "ng build --watch --configuration development",
     "test": "ng test",
-    "serve:ssr:alberto-subero-portfolio": "node dist/alberto-subero-portfolio/server/server.mjs"
+    "serve:ssr:alberto-subero-portfolio": "node dist/alberto-subero-portfolio/server/server.mjs",
+    "snippets": "node scripts/generate-snippets.mjs",
+    "prebuild": "npm run snippets",
+    "prestart": "npm run snippets",
+    "pretest": "npm run snippets"
   },
   "private": true,
   "dependencies": {
@@ -37,6 +41,7 @@
     "@types/jasmine": "~5.1.0",
     "@types/node": "^18.18.0",
     "angular-cli-ghpages": "^2.0.1",
+    "highlight.js": "^11.12.0",
     "istanbul-lib-instrument": "^6.0.3",
     "jasmine-core": "~5.2.0",
     "karma": "~6.4.0",

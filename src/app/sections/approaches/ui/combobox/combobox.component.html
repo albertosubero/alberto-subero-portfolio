@@ -1,0 +1,60 @@
+<div class="combobox">
+  <label class="combobox-label" [attr.for]="fieldId">{{ label() }}</label>
+
+  <div class="combobox-field">
+    <input
+      #field
+      type="text"
+      role="combobox"
+      autocomplete="off"
+      aria-autocomplete="list"
+      [attr.id]="fieldId"
+      [attr.aria-controls]="listId"
+      [attr.aria-expanded]="expanded()"
+      [attr.aria-activedescendant]="activeOptionId()"
+      placeholder="Escribe: urugua, angular, rxjs…"
+      (input)="onInput(field.value)"
+      (keydown)="onKeydown($event)" />
+
+    @if (isLoading()) {
+      <span class="combobox-spinner" aria-hidden="true"></span>
+    }
+  </div>
+
+  <ul
+    class="combobox-list"
+    role="listbox"
+    [attr.id]="listId"
+    [attr.aria-label]="label()"
+    [class.is-open]="expanded()">
+    @for (item of results(); track item.id; let i = $index) {
+      <li
+        class="combobox-option"
+        role="option"
+        [attr.id]="optionId(i)"
+        [attr.aria-selected]="i === activeIndex()"
+        [class.is-active]="i === activeIndex()"
+        (mouseenter)="activeIndex.set(i)"
+        (click)="choose(item)">
+        <span class="combobox-name">{{ item.title }}</span>
+      </li>
+    } @empty {
+      @if (!isLoading() && !error() && query().length) {
+        <li class="combobox-empty" role="presentation">Sin resultados</li>
+      }
+    }
+
+    @if (error(); as message) {
+      <li class="combobox-error" role="presentation">{{ message }}</li>
+    }
+  </ul>
+
+  <p class="visually-hidden" aria-live="polite" role="status">{{ announcement() }}</p>
+
+  @if (chosen(); as item) {
+    <p class="combobox-chosen">
+      Seleccionado:
+      <a [href]="item.url" target="_blank" rel="noopener">{{ item.title }}</a>
+    </p>
+  }
+</div>

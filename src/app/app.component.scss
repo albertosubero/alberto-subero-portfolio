@@ -285,3 +285,15 @@ $border-color: #ffe5a826;
     box-sizing: border-box;
   }
 }
+
+.approaches-placeholder {
+  min-height: 420px;
+  border-radius: 10px;
+  border: .5px dashed #ffe5a826;
+}
+
+.approaches-loading {
+  padding: 40px 0;
+  opacity: .6;
+  font-size: .85rem;
+}

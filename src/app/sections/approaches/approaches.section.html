@@ -1,0 +1,115 @@
+<div class="approaches">
+  <p class="approaches-intro">
+    El mismo buscador con autocompletado —debounce, cancelación de peticiones en vuelo,
+    loading/error/vacío y caché— resuelto de tres formas. El combobox es literalmente el
+    mismo componente en las tres: lo único que cambia es la fontanería reactiva.
+  </p>
+
+  <div class="approaches-tabs" role="tablist" aria-label="Enfoques de gestión de estado">
+    @for (item of notes; track item.id; let i = $index) {
+      <button
+        type="button"
+        role="tab"
+        class="approaches-tab"
+        [id]="'approach-tab-' + item.id"
+        [class.is-active]="active() === item.id"
+        [attr.aria-selected]="active() === item.id"
+        [attr.aria-controls]="'approach-panel-' + item.id"
+        [attr.tabindex]="active() === item.id ? 0 : -1"
+        (click)="select(item.id)"
+        (keydown)="onTabKeydown($event, i)">
+        {{ item.tab }}
+      </button>
+    }
+  </div>
+
+  <div
+    class="approaches-panel"
+    role="tabpanel"
+    [id]="'approach-panel-' + active()"
+    [attr.aria-labelledby]="'approach-tab-' + active()">
+
+    <div class="approaches-grid">
+      <div class="approaches-demo">
+        @switch (active()) {
+          @case ('rxjs') { <app-rxjs-search /> }
+          @case ('resource') { <app-resource-search /> }
+          @case ('store') { <app-store-search /> }
+        }
+
+        <div class="approaches-metrics">
+          <div class="metric">
+            <span class="metric-value">{{ metrics.fired() }}</span>
+            <span class="metric-label">lanzadas</span>
+          </div>
+          <div class="metric metric--warn">
+            <span class="metric-value">{{ metrics.cancelled() }}</span>
+            <span class="metric-label">canceladas</span>
+          </div>
+          <div class="metric">
+            <span class="metric-value">{{ metrics.settled() }}</span>
+            <span class="metric-label">completadas</span>
+          </div>
+          <div class="metric">
+            <span class="metric-value">{{ metrics.cacheHits() }}</span>
+            <span class="metric-label">caché</span>
+          </div>
+          <div class="metric metric--wide">
+            <span class="metric-value">{{ metrics.wastedRatio() }}%</span>
+            <span class="metric-label">trabajo descartado</span>
+          </div>
+        </div>
+
+        <div class="approaches-controls">
+          <label class="latency">
+            <span>Latencia simulada: <strong>{{ latency() }} ms</strong></span>
+            <input
+              type="range"
+              min="0"
+              max="2000"
+              step="100"
+              [value]="latency()"
+              (input)="onLatencyChange($any($event.target).value)" />
+          </label>
+          <button type="button" class="opacity" (click)="resetMetrics()">Reiniciar contadores</button>
+        </div>
+
+        <p class="approaches-hint">
+          Escribe rápido y mira el contador de canceladas: cada tecla descarta la petición
+          anterior. Sin la latencia simulada la API responde en ~80&nbsp;ms y no daría tiempo a verlo.
+        </p>
+      </div>
+
+      <div class="approaches-notes">
+        <h3 class="approaches-headline accent-color">{{ note().headline }}</h3>
+        <p class="approaches-stack">{{ note().stack }}</p>
+
+        <h4 class="approaches-subtitle">Cuándo lo elegiría</h4>
+        <ul class="approaches-list">
+          @for (line of note().yes; track $index) { <li>{{ line }}</li> }
+        </ul>
+
+        <h4 class="approaches-subtitle">Cuándo no</h4>
+        <ul class="approaches-list approaches-list--no">
+          @for (line of note().no; track $index) { <li>{{ line }}</li> }
+        </ul>
+
+        <button
+          type="button"
+          class="button outline approaches-code-toggle"
+          [attr.aria-expanded]="showCode()"
+          aria-controls="approach-code"
+          (click)="showCode.set(!showCode())">
+          {{ showCode() ? 'Ocultar código' : 'Ver código' }}
+        </button>
+      </div>
+    </div>
+
+    @if (showCode()) {
+      <figure class="approaches-code" id="approach-code">
+        <figcaption>{{ snippet().file }}</figcaption>
+        <pre><code [innerHTML]="snippet().html"></code></pre>
+      </figure>
+    }
+  </div>
+</div>
