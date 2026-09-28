@@ -1,5 +1,4 @@
 import { Component } from '@angular/core';
-import { RouterOutlet } from '@angular/router';
 import { skillI, skills } from './utils/skills';
 import { SocialButtonsComponent } from './components/social-buttons/social-buttons.component';
 import { ActionsButtonsComponent } from './components/actions-buttons/actions-buttons.component';
@@ -11,11 +10,10 @@ import { SpaceBackgroundComponent } from './components/space-background/space-ba
 import * as AOS from 'aos';
 
 @Component({
-  selector: 'app-root',
-  standalone: true,
-  imports: [RouterOutlet, CommonModule, SocialButtonsComponent, ActionsButtonsComponent, FooterComponent, SpaceBackgroundComponent],
-  templateUrl: './app.component.html',
-  styleUrl: './app.component.scss'
+    selector: 'app-root',
+    imports: [CommonModule, SocialButtonsComponent, ActionsButtonsComponent, FooterComponent, SpaceBackgroundComponent],
+    templateUrl: './app.component.html',
+    styleUrl: './app.component.scss'
 })
 export class AppComponent {
   title = 'alberto-subero-portfolio';

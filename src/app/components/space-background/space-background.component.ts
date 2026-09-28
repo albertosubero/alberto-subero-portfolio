@@ -18,11 +18,10 @@ interface ShootingStar {
 }
 
 @Component({
-  selector: 'app-space-background',
-  standalone: true,
-  imports: [],
-  templateUrl: './space-background.component.html',
-  styleUrl: './space-background.component.scss'
+    selector: 'app-space-background',
+    imports: [],
+    templateUrl: './space-background.component.html',
+    styleUrl: './space-background.component.scss'
 })
 export class SpaceBackgroundComponent implements AfterViewInit, OnDestroy {
   @ViewChild('canvas') private canvasRef!: ElementRef<HTMLCanvasElement>;

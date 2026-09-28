@@ -3,11 +3,10 @@ import { SocialButtonsComponent } from '../social-buttons/social-buttons.compone
 import { ActionsButtonsComponent } from '../actions-buttons/actions-buttons.component';
 
 @Component({
-  selector: 'app-footer',
-  standalone: true,
-  imports: [SocialButtonsComponent, ActionsButtonsComponent],
-  templateUrl: './footer.component.html',
-  styleUrl: './footer.component.scss'
+    selector: 'app-footer',
+    imports: [SocialButtonsComponent, ActionsButtonsComponent],
+    templateUrl: './footer.component.html',
+    styleUrl: './footer.component.scss'
 })
 export class FooterComponent {
 
