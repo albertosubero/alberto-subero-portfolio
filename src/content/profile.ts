@@ -28,7 +28,7 @@ export const profile = {
   // Foto en /public. `crop` encuadra cara y hombros; `focus` es el óvalo que se conserva
   // (el fondo de fuera se funde). Con null, la lluvia dibuja el nombre y el retrato una silueta.
   portrait: {
-    src: '/portrait.jpg',
+    src: '/portrait.webp',
     crop: { x: 0.18, y: 0.21, w: 0.64, h: 0.53 },
     focus: { x: 0.5, y: 0.52, rx: 0.42, ry: 0.56 },
   } as Portrait | null,
@@ -120,11 +120,11 @@ export const profile = {
       color: '#63cbb2',
       tags: ['JavaScript', 'Vue', 'React', 'Bootstrap', 'Sass', 'Azure SQL'],
       cards: [
-        { name: 'Búsqueda de servicios', image: '/assets/images/portfolio/dondoctor/dondoctor-1.png' },
-        { name: 'Agenda y pagos', image: '/assets/images/portfolio/dondoctor/dondoctor-4.png' },
-        { name: 'Servicios', image: '/assets/images/portfolio/dondoctor/dondoctor-2.png' },
-        { name: 'Perfil y calificaciones', image: '/assets/images/portfolio/dondoctor/dondoctor-5.png' },
-        { name: 'Ficha del doctor', image: '/assets/images/portfolio/dondoctor/dondoctor-3.png' },
+        { name: 'Búsqueda de servicios', image: '/assets/images/portfolio/dondoctor/dondoctor-1.webp' },
+        { name: 'Agenda y pagos', image: '/assets/images/portfolio/dondoctor/dondoctor-4.webp' },
+        { name: 'Servicios', image: '/assets/images/portfolio/dondoctor/dondoctor-2.webp' },
+        { name: 'Perfil y calificaciones', image: '/assets/images/portfolio/dondoctor/dondoctor-5.webp' },
+        { name: 'Ficha del doctor', image: '/assets/images/portfolio/dondoctor/dondoctor-3.webp' },
       ],
     },
     {
