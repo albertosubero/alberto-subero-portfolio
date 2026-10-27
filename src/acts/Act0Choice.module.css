@@ -1,0 +1,96 @@
+.root {
+  position: fixed;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: clamp(2.5rem, 7vh, 4.5rem);
+  padding: 5rem 1rem;
+  overflow: hidden;
+  background:
+    radial-gradient(ellipse at 50% 40%, rgba(0, 59, 0, 0.35), transparent 65%),
+    var(--black);
+}
+
+.hud {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  display: flex;
+  justify-content: space-between;
+  padding: 1.25rem 1.5rem;
+  font-size: 0.72rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--green-dim);
+}
+
+.signal {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.signal i {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--green);
+  box-shadow: 0 0 8px var(--green);
+  animation: pulse 1.6s ease-in-out infinite;
+}
+
+.terminal {
+  width: min(40rem, 100%);
+  font-size: clamp(1rem, 2.4vw, 1.35rem);
+  /* Leve parpadeo del fósforo (no en .root: Framer anima su filter al salir) */
+  animation: flicker 6s infinite;
+}
+
+.pills {
+  display: flex;
+  justify-content: center;
+  gap: clamp(1rem, 6vw, 5rem);
+  width: 100%;
+}
+
+.pills :global(span) {
+  white-space: pre-line;
+}
+
+.footer {
+  position: absolute;
+  bottom: 1.5rem;
+  font-size: 0.72rem;
+  letter-spacing: 0.08em;
+  color: var(--green-dim);
+}
+
+@keyframes pulse {
+  50% {
+    opacity: 0.3;
+  }
+}
+
+@keyframes flicker {
+  0%,
+  96%,
+  100% {
+    filter: brightness(1);
+  }
+  97% {
+    filter: brightness(1.25);
+  }
+  98% {
+    filter: brightness(0.85);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .terminal,
+  .signal i {
+    animation: none;
+  }
+}

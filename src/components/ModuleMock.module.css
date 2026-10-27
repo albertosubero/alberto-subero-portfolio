@@ -1,0 +1,152 @@
+/* Wireframes: bloques en verde tenue sobre fondo oscuro */
+.invoice,
+.quote,
+.clock,
+.tasks,
+.booking {
+  --line: rgba(0, 255, 65, 0.22);
+  --strong: rgba(0, 255, 65, 0.6);
+
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  height: 100%;
+}
+
+.heading {
+  width: 40%;
+  height: 10px;
+  margin-bottom: 4px;
+  background: var(--strong);
+  border-radius: 2px;
+}
+
+.row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+}
+
+.row i {
+  height: 6px;
+  background: var(--line);
+  border-radius: 2px;
+}
+
+.row b {
+  width: 16%;
+  height: 6px;
+  background: var(--line);
+  border-radius: 2px;
+}
+
+.total {
+  display: flex;
+  justify-content: space-between;
+  margin-top: auto;
+  padding-top: 8px;
+  border-top: 1px solid var(--line);
+}
+
+.total i {
+  width: 25%;
+  height: 8px;
+  background: var(--line);
+}
+
+.total b {
+  width: 22%;
+  height: 8px;
+  background: var(--strong);
+}
+
+.quote em {
+  flex-shrink: 0;
+  width: 10px;
+  height: 10px;
+  border: 1px solid var(--strong);
+  border-radius: 2px;
+}
+
+.quote em[data-ok='true'] {
+  background: var(--strong);
+}
+
+.quote .row {
+  justify-content: flex-start;
+}
+
+.button {
+  align-self: flex-end;
+  width: 34%;
+  height: 16px;
+  margin-top: auto;
+  background: var(--strong);
+  border-radius: 999px;
+}
+
+.clock strong {
+  font-family: var(--font-mono);
+  font-size: 1.1rem;
+  color: var(--green);
+  text-shadow: 0 0 10px rgba(0, 255, 65, 0.6);
+}
+
+.bars {
+  display: flex;
+  flex: 1;
+  align-items: flex-end;
+  gap: 6px;
+}
+
+.bars i {
+  flex: 1;
+  background: linear-gradient(var(--strong), var(--line));
+  border-radius: 2px 2px 0 0;
+}
+
+.tasks {
+  flex-direction: row;
+}
+
+.column {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  gap: 6px;
+  padding: 6px;
+  background: rgba(0, 255, 65, 0.05);
+  border-radius: 4px;
+}
+
+.column i {
+  height: 18px;
+  background: var(--line);
+  border-radius: 3px;
+}
+
+.column i[data-done='true'] {
+  background: var(--strong);
+}
+
+.booking {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  gap: 4px;
+}
+
+.booking i {
+  aspect-ratio: 1;
+  border: 1px solid var(--line);
+  border-radius: 3px;
+}
+
+.booking i[data-state='busy'] {
+  background: var(--line);
+}
+
+.booking i[data-state='today'] {
+  background: var(--strong);
+  box-shadow: 0 0 10px var(--green);
+}

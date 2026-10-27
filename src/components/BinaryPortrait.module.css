@@ -1,0 +1,7 @@
+.canvas {
+  display: block;
+  width: 100%;
+  aspect-ratio: 4 / 5;
+  cursor: crosshair;
+  touch-action: pan-y;
+}

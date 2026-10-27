@@ -1,0 +1,40 @@
+.root {
+  display: flex;
+  flex-direction: column;
+  gap: 0.9em;
+}
+
+.line {
+  margin: 0;
+  min-height: 1.4em;
+  line-height: 1.4;
+  text-shadow: 0 0 8px rgba(0, 255, 65, 0.55);
+}
+
+.prompt {
+  color: var(--green-dim);
+  margin-right: 0.75ch;
+}
+
+.caret {
+  display: inline-block;
+  width: 0.6em;
+  height: 1.1em;
+  margin-left: 0.15ch;
+  vertical-align: text-bottom;
+  background: var(--green);
+  box-shadow: 0 0 10px var(--green);
+  animation: blink 1s steps(1) infinite;
+}
+
+@keyframes blink {
+  50% {
+    opacity: 0;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .caret {
+    animation: none;
+  }
+}

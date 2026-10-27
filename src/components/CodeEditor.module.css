@@ -1,0 +1,277 @@
+/* Cada época redefine estas variables: la ventana "muta" con transiciones CSS */
+.window {
+  --chrome-bg: #c0c0c0;
+  --chrome-fg: #fff;
+  --title-bg: linear-gradient(90deg, #000080, #1084d0);
+  --editor-bg: #ffffff;
+  --editor-fg: #000000;
+  --gutter: #808080;
+  --radius: 0px;
+  --border: 2px outset #dfdfdf;
+  --shadow: 4px 4px 0 rgba(0, 0, 0, 0.6);
+  --font: 'Courier New', Courier, monospace;
+  --c-comment: #008000;
+  --c-string: #a31515;
+  --c-deco: #af00db;
+  --c-kw: #0000ff;
+  --c-fn: #795e26;
+  --c-num: #098658;
+  --c-interp: #000000;
+
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  overflow: hidden;
+  background: var(--chrome-bg);
+  border: var(--border);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+  transition:
+    background 0.6s,
+    border-radius 0.6s,
+    box-shadow 0.6s;
+}
+
+.window[data-era='angularjs'] {
+  --chrome-bg: #d9d9d9;
+  --chrome-fg: #333;
+  --title-bg: linear-gradient(180deg, #ededed, #c9c9c9);
+  --editor-bg: #272822;
+  --editor-fg: #f8f8f2;
+  --gutter: #75715e;
+  --radius: 6px;
+  --border: 1px solid #9a9a9a;
+  --shadow: 0 18px 40px rgba(0, 0, 0, 0.55);
+  --font: Monaco, Menlo, Consolas, monospace;
+  --c-comment: #75715e;
+  --c-string: #e6db74;
+  --c-deco: #66d9ef;
+  --c-kw: #f92672;
+  --c-fn: #a6e22e;
+  --c-num: #ae81ff;
+  --c-interp: #66d9ef;
+}
+
+.window[data-era='angular'] {
+  --chrome-bg: rgba(6, 16, 9, 0.85);
+  --chrome-fg: #9effb5;
+  --title-bg: rgba(0, 255, 65, 0.06);
+  --editor-bg: rgba(4, 10, 6, 0.9);
+  --editor-fg: #d7ffe0;
+  --gutter: #2f6b40;
+  --radius: 14px;
+  --border: 1px solid rgba(0, 255, 65, 0.45);
+  --shadow: 0 0 60px rgba(0, 255, 65, 0.18), 0 30px 60px rgba(0, 0, 0, 0.7);
+  --font: var(--font-mono);
+  --c-comment: #3f7a4f;
+  --c-string: #b6ffc6;
+  --c-deco: #ff5f6d;
+  --c-kw: #00ff41;
+  --c-fn: #7cf7ff;
+  --c-num: #ffd166;
+  --c-interp: #ffd166;
+
+  backdrop-filter: blur(10px);
+}
+
+.window[data-status='error'] {
+  --shadow: 0 0 60px rgba(255, 59, 48, 0.35), 0 18px 40px rgba(0, 0, 0, 0.6);
+}
+
+.titlebar {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 0.45rem 0.75rem;
+  font-family: var(--font-sans);
+  font-size: 0.78rem;
+  font-weight: 700;
+  color: var(--chrome-fg);
+  background: var(--title-bg);
+}
+
+.window[data-era='jquery'] .titlebar {
+  font-family: Tahoma, 'MS Sans Serif', sans-serif;
+}
+
+.dots {
+  display: none;
+  gap: 6px;
+}
+
+.dots i {
+  width: 11px;
+  height: 11px;
+  border-radius: 50%;
+  background: #ff5f56;
+}
+
+.dots i:nth-child(2) {
+  background: #ffbd2e;
+}
+
+.dots i:nth-child(3) {
+  background: #27c93f;
+}
+
+.window:not([data-era='jquery']) .dots {
+  display: inline-flex;
+}
+
+.window[data-era='angular'] .dots i {
+  background: rgba(0, 255, 65, 0.35);
+}
+
+.title {
+  flex: 1;
+}
+
+.window:not([data-era='jquery']) .title {
+  text-align: center;
+  font-weight: 500;
+}
+
+.era {
+  padding: 0.1rem 0.5rem;
+  font-size: 0.68rem;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  border: 1px solid currentColor;
+  border-radius: 999px;
+  opacity: 0.8;
+}
+
+.body {
+  position: relative;
+  min-height: 20rem;
+  margin: 2px;
+  background: var(--editor-bg);
+  transition: background 0.6s;
+}
+
+.window[data-era='jquery'] .body {
+  border: 2px inset #dfdfdf;
+}
+
+.code {
+  margin: 0;
+  padding: 1rem 1rem 1rem 0;
+  overflow-x: auto;
+  font-family: var(--font);
+  font-size: clamp(0.68rem, 1.1vw, 0.85rem);
+  line-height: 1.6;
+  color: var(--editor-fg);
+}
+
+.line {
+  display: inline;
+}
+
+.gutter {
+  display: inline-block;
+  width: 2.75rem;
+  padding-right: 1rem;
+  text-align: right;
+  color: var(--gutter);
+  user-select: none;
+}
+
+.comment {
+  color: var(--c-comment);
+  font-style: italic;
+}
+.string {
+  color: var(--c-string);
+}
+.deco {
+  color: var(--c-deco);
+}
+.kw {
+  color: var(--c-kw);
+}
+.fn {
+  color: var(--c-fn);
+}
+.num {
+  color: var(--c-num);
+}
+.interp {
+  color: var(--c-interp);
+}
+
+.flash {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background:
+    repeating-linear-gradient(to bottom, rgba(0, 255, 65, 0.35) 0 2px, transparent 2px 7px),
+    rgba(0, 255, 65, 0.15);
+  mix-blend-mode: screen;
+}
+
+.terminal {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  height: 9.5rem;
+  margin: 0 2px 2px;
+  padding: 0.75rem 1rem;
+  overflow: hidden;
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  line-height: 1.55;
+  color: #cfe9d4;
+  background: #050806;
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.terminal p {
+  margin: 0;
+  white-space: pre;
+}
+
+.cmd {
+  color: #e8e8e8;
+}
+.ok {
+  color: var(--green);
+}
+.error {
+  color: #ff3b30;
+  font-weight: 700;
+}
+.muted {
+  color: #6c7f70;
+}
+.prompt {
+  color: var(--green);
+  animation: blink 1s steps(1) infinite;
+}
+
+.statusbar {
+  display: flex;
+  justify-content: space-between;
+  padding: 0.25rem 0.75rem;
+  font-family: var(--font-mono);
+  font-size: 0.68rem;
+  color: var(--chrome-fg);
+  background: var(--title-bg);
+}
+
+.window[data-status='error'] .statusbar {
+  color: #fff;
+  background: #c4271d;
+}
+
+.window[data-status='done'] .statusbar {
+  color: var(--black);
+  background: var(--green);
+}
+
+@keyframes blink {
+  50% {
+    opacity: 0;
+  }
+}

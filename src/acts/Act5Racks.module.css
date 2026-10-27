@@ -1,0 +1,198 @@
+/* De vuelta al Construct: sala blanca, estanterías negras */
+.root {
+  --construct: #f4f4f0;
+  --ink: #0d0208;
+  --rack-w: 360px;
+  --rack-h: min(64vh, 560px);
+
+  position: relative;
+  height: 520vh;
+  background: var(--construct);
+  color: var(--ink);
+}
+
+.sticky {
+  position: sticky;
+  top: 0;
+  height: 100vh;
+  height: 100svh;
+  overflow: hidden;
+  perspective: 1000px;
+  perspective-origin: 50% 45%;
+}
+
+.scene {
+  position: absolute;
+  inset: 0;
+  transform-style: preserve-3d;
+}
+
+/* Suelo en perspectiva: una rejilla que corre hacia el espectador */
+.floor {
+  position: absolute;
+  left: -150vw;
+  width: 400vw;
+  top: calc(50% + var(--rack-h) / 2);
+  height: 12000px;
+  transform-origin: top center;
+  transform: rotateX(90deg);
+  /* Se funde con la niebla: el borde lejano no debe dibujar una línea en el horizonte */
+  mask-image: linear-gradient(to bottom, #000 0%, transparent 45%);
+  background:
+    linear-gradient(rgba(13, 2, 8, 0.12) 2px, transparent 2px) 0 0 / 100% 240px,
+    linear-gradient(90deg, rgba(13, 2, 8, 0.08) 2px, transparent 2px) 0 0 / 240px 100%;
+}
+
+.rack {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  display: flex;
+  flex-direction: column;
+  width: var(--rack-w);
+  height: var(--rack-h);
+  margin-top: calc(var(--rack-h) / -2);
+  margin-left: calc(var(--rack-w) / -2);
+  padding: 1rem;
+  background: var(--ink);
+  border: 6px solid #1c1c1c;
+  box-shadow:
+    0 50px 80px rgba(0, 0, 0, 0.25),
+    inset 0 0 0 1px rgba(255, 255, 255, 0.06);
+  backface-visibility: hidden;
+}
+
+.plate {
+  padding-bottom: 0.75rem;
+  border-bottom: 2px solid #2a2a2a;
+}
+
+.plate span {
+  font-size: 0.65rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--green-dim);
+}
+
+.plate h3 {
+  margin: 0.2rem 0 0;
+  font-family: var(--font-display);
+  font-weight: 400;
+  font-size: 1.9rem;
+  line-height: 1;
+  text-transform: uppercase;
+  color: var(--white);
+}
+
+.items {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+/* Cada tecnología ocupa un hueco de la estantería */
+.items li {
+  display: flex;
+  flex: 1;
+  align-items: center;
+  gap: 0.75rem;
+  max-height: 4rem;
+  padding: 0 0.25rem;
+  font-size: 0.95rem;
+  font-weight: 500;
+  color: var(--white);
+  border-bottom: 2px solid #2a2a2a;
+}
+
+.items li i {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: var(--green);
+  box-shadow: 0 0 8px var(--green);
+}
+
+/* Niebla blanca hacia el fondo de la sala */
+.fog {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background: radial-gradient(ellipse 30% 30% at 50% 45%, var(--construct) 0%, rgba(244, 244, 240, 0) 100%);
+}
+
+.intro,
+.outro {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  pointer-events: none;
+}
+
+.kicker {
+  margin: 0 0 1rem;
+  font-size: 0.8rem;
+  color: rgba(13, 2, 8, 0.5);
+}
+
+.title,
+.outroText {
+  margin: 0;
+  font-family: var(--font-display);
+  font-weight: 400;
+  font-size: clamp(2.8rem, 8vw, 7.5rem);
+  line-height: 0.95;
+  text-transform: uppercase;
+}
+
+.title span,
+.outroText span {
+  display: inline-block;
+  margin: 0.06em 0;
+  padding: 0 0.12em;
+  line-height: 1;
+  color: var(--green);
+  background: var(--ink);
+}
+
+.counter {
+  position: absolute;
+  left: clamp(1.25rem, 5vw, 5rem);
+  bottom: 2rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.2rem;
+  font-size: 0.72rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: rgba(13, 2, 8, 0.5);
+}
+
+.counter strong {
+  font-family: var(--font-display);
+  font-weight: 400;
+  font-size: 1.5rem;
+  letter-spacing: 0;
+  color: var(--ink);
+}
+
+@media (max-width: 760px) {
+  .root {
+    --rack-w: 230px;
+    --rack-h: min(58vh, 460px);
+  }
+
+  .plate h3 {
+    font-size: 1.4rem;
+  }
+
+  .items li {
+    font-size: 0.8rem;
+  }
+}

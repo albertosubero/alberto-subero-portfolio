@@ -1,0 +1,122 @@
+.root {
+  position: relative;
+  height: 500vh;
+}
+
+.sticky {
+  position: sticky;
+  top: 0;
+  height: 100vh;
+  height: 100svh;
+  overflow: hidden;
+}
+
+.canvas {
+  position: absolute;
+  inset: 0;
+}
+
+.hero {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 2.5rem;
+  z-index: 10;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1.25rem;
+  text-align: center;
+}
+
+.name {
+  margin: 0;
+  font-family: var(--font-display);
+  font-weight: 400;
+  font-size: clamp(2.4rem, 6vw, 5rem);
+  line-height: 1;
+  letter-spacing: 0.02em;
+  text-transform: uppercase;
+  color: var(--white);
+  text-shadow:
+    0 0 30px rgba(0, 0, 0, 0.95),
+    0 0 50px rgba(0, 255, 65, 0.35);
+}
+
+.role {
+  margin: 0;
+  font-size: clamp(0.85rem, 1.8vw, 1.1rem);
+  letter-spacing: 0.25em;
+  text-transform: uppercase;
+  text-shadow: 0 0 10px rgba(0, 255, 65, 0.6);
+}
+
+.scrollHint {
+  margin: 0;
+  font-size: 0.72rem;
+  letter-spacing: 0.1em;
+  color: var(--green-dim);
+}
+
+.scrollHint span {
+  display: inline-block;
+  animation: drop 1.8s ease-in-out infinite;
+}
+
+.beat {
+  position: absolute;
+  inset: 0;
+  z-index: 10;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 0 clamp(1.5rem, 10vw, 9rem);
+  pointer-events: none;
+}
+
+.beat[aria-hidden='false'] {
+  pointer-events: auto;
+}
+
+.kicker {
+  margin: 0 0 1rem;
+  font-size: 0.85rem;
+  color: var(--green-dim);
+}
+
+.statement {
+  margin: 0;
+  font-family: var(--font-display);
+  font-weight: 400;
+  font-size: clamp(3.5rem, 12vw, 10rem);
+  line-height: 0.92;
+  text-transform: uppercase;
+  color: var(--white);
+  text-shadow: 0 0 30px rgba(0, 0, 0, 0.9);
+}
+
+.accent {
+  color: var(--green);
+  text-shadow: 0 0 24px rgba(0, 255, 65, 0.6);
+}
+
+.body {
+  max-width: 32rem;
+  margin: 1.5rem 0 0;
+  font-size: clamp(0.95rem, 1.6vw, 1.15rem);
+  line-height: 1.6;
+  color: rgba(245, 245, 240, 0.8);
+  text-shadow: 0 0 12px rgba(0, 0, 0, 0.9);
+}
+
+@keyframes drop {
+  0%,
+  100% {
+    transform: translateY(0);
+    opacity: 1;
+  }
+  60% {
+    transform: translateY(6px);
+    opacity: 0.4;
+  }
+}

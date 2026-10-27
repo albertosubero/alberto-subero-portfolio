@@ -1,0 +1,197 @@
+.root {
+  position: relative;
+  background:
+    radial-gradient(ellipse at 50% 60%, rgba(0, 59, 0, 0.4), transparent 65%),
+    linear-gradient(rgba(0, 255, 65, 0.035) 1px, transparent 1px) 0 0 / 100% 48px,
+    var(--black);
+}
+
+.sticky {
+  position: sticky;
+  top: 0;
+  height: 100vh;
+  height: 100svh;
+  overflow: hidden;
+}
+
+.track {
+  display: flex;
+  height: 100%;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  width: max-content;
+}
+
+.track > li {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  flex-shrink: 0;
+  height: 100%;
+  padding: 6rem clamp(1.5rem, 4vw, 4rem) 5rem;
+}
+
+/* Ancha a propósito: la primera cifra debe empezar fuera de pantalla, aún en binario */
+.intro {
+  width: 64vw;
+  padding-left: clamp(1.5rem, 7vw, 7rem) !important;
+}
+
+.kicker {
+  margin: 0 0 1.25rem;
+  font-size: 0.8rem;
+  color: var(--green-dim);
+}
+
+.title {
+  margin: 0;
+  font-family: var(--font-display);
+  font-weight: 400;
+  font-size: clamp(4rem, 11vw, 11rem);
+  line-height: 0.88;
+  text-transform: uppercase;
+  color: var(--white);
+}
+
+.title span {
+  color: var(--green);
+  text-shadow: 0 0 30px rgba(0, 255, 65, 0.5);
+}
+
+.hint {
+  margin: 2rem 0 0;
+  font-size: 0.85rem;
+  color: rgba(245, 245, 240, 0.6);
+}
+
+.hint span {
+  display: inline-block;
+  color: var(--green);
+  animation: nudge 1.6s ease-in-out infinite;
+}
+
+.card {
+  width: min(58vw, 44rem);
+  border-left: 1px solid rgba(0, 255, 65, 0.18);
+}
+
+.index {
+  position: absolute;
+  top: 6rem;
+  left: clamp(1.5rem, 4vw, 4rem);
+  font-size: 0.75rem;
+  color: var(--green-dim);
+}
+
+.number {
+  display: flex;
+  align-items: flex-end;
+  height: clamp(7rem, 22vw, 19rem);
+  margin: 0;
+  font-family: var(--font-display);
+  font-size: clamp(7rem, 22vw, 19rem);
+  line-height: 1;
+  color: var(--white);
+  font-variant-numeric: tabular-nums;
+  text-shadow: 0 0 40px rgba(0, 255, 65, 0.35);
+  transition:
+    color 0.3s,
+    text-shadow 0.3s;
+}
+
+/* En binario: monoespaciada, más pequeña y verde apagado */
+.card[data-phase='binary'] .number {
+  font-family: var(--font-mono);
+  font-size: clamp(3rem, 9vw, 8rem);
+  font-weight: 700;
+  letter-spacing: 0.05em;
+  color: var(--green-dim);
+  text-shadow: 0 0 18px rgba(0, 143, 17, 0.5);
+}
+
+/* Instante de conversión: destello */
+.card[data-phase='convert'] .number {
+  font-family: var(--font-mono);
+  font-size: clamp(3rem, 9vw, 8rem);
+  font-weight: 700;
+  letter-spacing: 0.05em;
+  color: #eaffef;
+  text-shadow:
+    0 0 12px var(--green),
+    0 0 40px var(--green);
+}
+
+.binary {
+  min-height: 1.5em;
+  margin: 1rem 0 0;
+  font-size: clamp(0.8rem, 1.3vw, 1rem);
+  color: var(--green);
+  opacity: 0.8;
+}
+
+.label {
+  margin: 1.5rem 0 0;
+  font-size: clamp(0.85rem, 1.4vw, 1.05rem);
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--white);
+}
+
+.detail {
+  margin: 0.4rem 0 0;
+  font-family: var(--font-sans);
+  font-size: 0.95rem;
+  color: rgba(245, 245, 240, 0.55);
+}
+
+.outro {
+  width: min(70vw, 52rem);
+  border-left: 1px solid rgba(0, 255, 65, 0.18);
+}
+
+.outroText {
+  margin: 0;
+  font-family: var(--font-display);
+  font-size: clamp(2.4rem, 5.5vw, 5.5rem);
+  line-height: 1;
+  text-transform: uppercase;
+  color: var(--white);
+}
+
+.outroText span {
+  color: var(--green);
+}
+
+.progress {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  height: 2px;
+  background: var(--green);
+  box-shadow: 0 0 12px var(--green);
+  transform-origin: left;
+}
+
+@keyframes nudge {
+  50% {
+    transform: translateX(6px);
+  }
+}
+
+@media (max-width: 760px) {
+  .intro,
+  .card,
+  .outro {
+    width: 86vw;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .hint span {
+    animation: none;
+  }
+}

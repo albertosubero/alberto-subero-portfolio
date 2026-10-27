@@ -1,27 +1,41 @@
-# AlbertoSuberoPortfolio
+# albertosubero.dev
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 18.2.1.
+CV online de Alberto Subero, Senior Frontend Developer. Una historia en ocho actos con estética Matrix: elegir pastilla, lluvia de código 3D, evolución del código, el Construct, cifras en binario, el arsenal de tecnologías, la experiencia en bullet time, el túnel de proyectos y la salida.
 
-## Development server
+La pastilla azul (`/#cv`) lleva a un CV clásico, rápido y accesible.
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The application will automatically reload if you change any of the source files.
+## Stack
 
-## Code scaffolding
+React 19 + TypeScript, Vite, React Three Fiber (Three.js) con postprocesado, Framer Motion y Lenis.
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+## Desarrollo
 
-## Build
+```bash
+npm install
+npm run dev
+```
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory.
+- `/#matrix` salta la intro y entra directo a la historia.
+- `/?nofx#matrix` desactiva el postprocesado 3D.
 
-## Running unit tests
+## Contenido
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
+Todo el texto del CV vive en `src/content/`:
 
-## Running end-to-end tests
+- `profile.ts`: datos personales, experiencia, proyectos, tecnologías y retrato.
+- `stats.ts`: cifras del Acto 4.
+- `stack.ts`: estanterías del Acto 5.
+- `eras.ts`: código de las tres épocas del Acto 2.
 
-Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To use this command, you need to first add a package that implements end-to-end testing capabilities.
+## Publicación
 
-## Further help
+GitHub Pages publica la carpeta `docs/` de la rama `main`. Para publicar:
 
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.dev/tools/cli) page.
+```bash
+npm run build
+git add -A && git commit -m "..." && git push
+```
+
+`npm run build` genera `docs/` (incluye `CNAME`, `.nojekyll`, favicons, PDFs del CV y capturas desde `public/`).
+
+La web anterior en Angular está en la rama `legacy/angular-site`.

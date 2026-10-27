@@ -1,0 +1,155 @@
+.root {
+  position: relative;
+  background: var(--black);
+}
+
+.sticky {
+  position: sticky;
+  top: 0;
+  height: 100vh;
+  height: 100svh;
+  overflow: hidden;
+}
+
+.canvas {
+  position: absolute;
+  inset: 0;
+}
+
+.intro {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 0 clamp(1.5rem, 8vw, 8rem);
+  pointer-events: none;
+  background: radial-gradient(ellipse at 30% 50%, rgba(13, 2, 8, 0.85), transparent 70%);
+}
+
+.kicker {
+  margin: 0 0 1rem;
+  font-size: 0.8rem;
+  color: var(--green-dim);
+}
+
+.title {
+  margin: 0;
+  font-family: var(--font-display);
+  font-weight: 400;
+  font-size: clamp(3.2rem, 10vw, 9.5rem);
+  line-height: 0.9;
+  text-transform: uppercase;
+  color: var(--white);
+}
+
+.title span {
+  color: var(--green);
+  text-shadow: 0 0 30px rgba(0, 255, 65, 0.5);
+}
+
+.hint {
+  max-width: 26rem;
+  margin: 1.75rem 0 0;
+  font-size: 0.85rem;
+  line-height: 1.6;
+  color: rgba(245, 245, 240, 0.65);
+}
+
+.job {
+  position: absolute;
+  left: clamp(1.25rem, 5vw, 5rem);
+  bottom: clamp(5rem, 12vh, 8rem);
+  width: min(30rem, calc(100% - 2.5rem));
+  padding: 1.5rem;
+  background: rgba(13, 2, 8, 0.72);
+  border: 1px solid rgba(0, 255, 65, 0.3);
+  border-radius: 0.75rem;
+  backdrop-filter: blur(8px);
+  transform-origin: left center;
+}
+
+.index {
+  margin: 0;
+  font-size: 0.7rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--green-dim);
+}
+
+.role {
+  margin: 0.5rem 0 0;
+  font-family: var(--font-display);
+  font-weight: 400;
+  font-size: clamp(1.8rem, 3.2vw, 2.6rem);
+  line-height: 1;
+  text-transform: uppercase;
+  color: var(--white);
+}
+
+.meta {
+  margin: 0.5rem 0 0;
+  font-size: 0.78rem;
+  color: var(--green);
+}
+
+.summary {
+  margin: 1rem 0 0;
+  font-family: var(--font-sans);
+  font-size: 0.9rem;
+  line-height: 1.6;
+  color: rgba(245, 245, 240, 0.78);
+}
+
+.meter {
+  position: absolute;
+  right: clamp(1.25rem, 5vw, 5rem);
+  bottom: 2rem;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 0.5rem;
+  font-size: 0.68rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--green-dim);
+}
+
+.meterLabel span {
+  color: var(--green);
+  font-variant-numeric: tabular-nums;
+}
+
+.meterTrack {
+  width: 10rem;
+  height: 2px;
+  background: rgba(0, 255, 65, 0.15);
+}
+
+.meterTrack span {
+  display: block;
+  height: 100%;
+  background: var(--green);
+  box-shadow: 0 0 8px var(--green);
+  transform-origin: left;
+  transform: scaleX(0);
+}
+
+@media (max-width: 640px) {
+  .job {
+    bottom: 4.5rem;
+    padding: 1.1rem;
+  }
+
+  .summary {
+    font-size: 0.8rem;
+  }
+
+  .meter {
+    bottom: 1.25rem;
+  }
+
+  .meterTrack {
+    width: 6rem;
+  }
+}
