@@ -2,10 +2,10 @@
   display: flex;
   justify-content: center;
   margin: 0;
-  padding: 2rem 0 0;
+  padding: 2.5rem 0 0.5rem;
   font-family: var(--font-display);
-  font-size: 14.2vw;
-  line-height: 0.82;
+  font-size: min(11vw, 12rem);
+  line-height: 0.85;
   text-transform: uppercase;
   white-space: nowrap;
   color: var(--white);
@@ -13,14 +13,29 @@
   user-select: none;
 }
 
+/* Sin transición CSS: el bucle de animación ya suaviza el movimiento */
 .letter {
+  position: relative;
   display: inline-block;
-  min-width: 0.3em;
-  text-align: center;
   transform-origin: bottom center;
-  transition:
-    transform 0.25s cubic-bezier(0.16, 1, 0.3, 1),
-    color 0.25s;
+  will-change: transform;
+}
+
+/* Glifo de la lluvia encima de la letra; la letra se oculta pero conserva su ancho */
+.letter[data-glyph] {
+  color: transparent !important;
+}
+
+.letter[data-glyph]::after {
+  content: attr(data-glyph);
+  position: absolute;
+  inset: 0;
+  display: grid;
+  place-items: center;
+  font-family: 'Noto Sans JP', var(--font-mono);
+  font-size: 0.62em;
+  color: var(--green);
+  text-shadow: 0 0 18px rgba(0, 255, 65, 0.7);
 }
 
 .space {

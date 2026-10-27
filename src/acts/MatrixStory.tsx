@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react'
 import { motion, useScroll } from 'framer-motion'
 import Lenis from 'lenis'
+import { setSmoothScroll } from '../lib/smoothScroll'
 import { Act1Rain } from './Act1Rain'
 import { Act2Evolution } from './Act2Evolution'
 import { Act3Construct } from './Act3Construct'
@@ -45,7 +46,11 @@ export function MatrixStory({ onClassic, onRestart }: { onClassic: () => void; o
   useEffect(() => {
     const lenis = new Lenis({ autoRaf: true, lerp: 0.08 })
     lenis.scrollTo(0, { immediate: true, force: true })
-    return () => lenis.destroy()
+    setSmoothScroll(lenis)
+    return () => {
+      setSmoothScroll(null)
+      lenis.destroy()
+    }
   }, [])
 
   return (

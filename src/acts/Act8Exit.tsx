@@ -1,6 +1,7 @@
-import { useRef, useState, type FormEvent } from 'react'
+import { useEffect, useRef, useState, type FormEvent } from 'react'
 import { AnimatePresence, motion, useInView } from 'framer-motion'
 import { profile } from '../content/profile'
+import { scrollToBottom } from '../lib/smoothScroll'
 import { RetroPhone } from '../components/RetroPhone'
 import { Typewriter, type TypedLine } from '../components/Typewriter'
 import { CodeName } from '../components/CodeName'
@@ -48,6 +49,13 @@ export function Act8Exit({ onClassic, onRestart }: Props) {
   const ringing = useInView(callRef, { amount: 0.5 })
   const [answered, setAnswered] = useState(false)
   const [callDone, setCallDone] = useState(false)
+
+  // Al terminar la llamada aparece el contacto: bajamos hasta el final de la página
+  useEffect(() => {
+    if (!callDone) return
+    const id = window.setTimeout(() => scrollToBottom(), 600)
+    return () => window.clearTimeout(id)
+  }, [callDone])
 
   const links = [
     { label: 'Email', value: profile.email, href: `mailto:${profile.email}` },

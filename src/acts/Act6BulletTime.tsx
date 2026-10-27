@@ -8,6 +8,8 @@ import { BulletTimeScene, type TimeState } from '../three/BulletTimeScene'
 import styles from './Act6BulletTime.module.css'
 
 const jobs = profile.experience
+// Fracción del scroll reservada al titular del acto
+const INTRO = 0.1
 
 function useSceneAssets() {
   const [assets, setAssets] = useState<{ atlas: GlyphAtlas; panels: THREE.Texture[] } | null>(null)
@@ -61,12 +63,14 @@ export function Act6BulletTime() {
   const state = useRef<TimeState>({ time: 0, flow: 0.03 })
   const { scrollYProgress: p } = useScroll({ target: ref, offset: ['start start', 'end end'] })
 
-  const introOpacity = useTransform(p, [0, 0.04, 0.09], [1, 1, 0])
+  // El primer tramo del scroll es solo para el titular; después empieza la historia (0..1)
+  const introOpacity = useTransform(p, [0, INTRO * 0.4, INTRO * 0.9], [1, 1, 0])
+  const story = useTransform(p, (v) => Math.min(1, Math.max(0, (v - INTRO) / (1 - INTRO))))
   const [job, setJob] = useState(-1)
-  useMotionValueEvent(p, 'change', (v) => {
+  useMotionValueEvent(story, 'change', (v) => {
     const s = v * jobs.length
     // El texto cambia a mitad del vuelo entre dos trabajos
-    const j = s < 0.12 ? -1 : Math.min(jobs.length - 1, Math.floor(s + 0.1))
+    const j = v <= 0 ? -1 : Math.min(jobs.length - 1, Math.floor(s + 0.1))
     setJob(j)
   })
 
@@ -74,7 +78,7 @@ export function Act6BulletTime() {
     <section
       ref={ref}
       className={styles.root}
-      style={{ height: `${jobs.length * 115 + 100}vh` }}
+      style={{ height: `${jobs.length * 115 + 200}vh` }}
       data-act="06"
       aria-labelledby="act6-title"
     >
@@ -85,7 +89,7 @@ export function Act6BulletTime() {
           animate={{ opacity: assets ? 1 : 0 }}
           transition={{ duration: 1.2 }}
         >
-          {assets && <BulletTimeScene progress={p} state={state} active={inView} {...assets} />}
+          {assets && <BulletTimeScene progress={story} intro={p} state={state} active={inView} {...assets} />}
         </motion.div>
 
         <motion.div className={styles.intro} style={{ opacity: introOpacity }}>

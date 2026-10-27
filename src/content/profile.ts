@@ -4,8 +4,8 @@ import type { Portrait } from '../lib/portrait'
 
 export type ModuleKind = 'invoice' | 'quote' | 'clock' | 'tasks' | 'booking'
 
-/** Tarjeta del túnel: una maqueta de módulo dibujada en CSS o una imagen (captura o logo). */
-export type ProjectCard = { name: string; kind: ModuleKind } | { name: string; image: string; logo?: boolean }
+/** Tarjeta del túnel: una maqueta de módulo dibujada en CSS o una captura. */
+export type ProjectCard = { name: string; kind: ModuleKind } | { name: string; image: string; vertical?: boolean }
 
 export type Project = {
   name: string
@@ -95,7 +95,7 @@ export const profile = {
     },
   ],
 
-  // Cada proyecto vuela por el túnel del Acto 7: sus `cards` son capturas, logos o maquetas
+  // Cada proyecto vuela por el túnel del Acto 7: sus `cards` son capturas o maquetas
   projects: [
     {
       name: 'Taclia',
@@ -105,50 +105,55 @@ export const profile = {
       color: '#7269ff',
       tags: ['TypeScript', 'Angular', 'RxJS', 'Angular Material', 'NestJS', 'MongoDB', 'Sass'],
       cards: [
-        { name: 'Taclia', image: '/assets/images/portfolio/taclia-capture.jpg' },
-        { name: 'Facturas', kind: 'invoice' },
-        { name: 'Presupuestos', kind: 'quote' },
-        { name: 'Taclia', image: '/assets/images/portfolio/taclia-logo.png', logo: true },
-        { name: 'Control horario', kind: 'clock' },
-        { name: 'Tareas', kind: 'tasks' },
-        { name: 'Booking', kind: 'booking' },
+        { name: 'Booking', image: '/assets/images/portfolio/taclia/taclia-capture.jpg' },
+        { name: 'Calendario y tablero', image: '/assets/images/portfolio/taclia/taclia-2.jpeg' },
+        { name: 'Control horario', image: '/assets/images/portfolio/taclia/taclia-3.jpeg' },
+        { name: 'Tareas y presupuestos', image: '/assets/images/portfolio/taclia/taclia-1.jpeg' },
+        { name: 'Equipo', image: '/assets/images/portfolio/taclia/taclia-4.jpeg' },
       ] as ProjectCard[],
     },
     {
       name: 'Dondoctor',
       summary:
         'Sistema de agendamiento online para IPS, centros médicos, clínicas, hospitales y torres médicas, que permite al paciente autogestionar sus citas a través de la web.',
-      url: 'https://www.dondoctor.com/',
+      url: 'https://www.youtube.com/watch?v=77gHzX4flsM',
       color: '#63cbb2',
       tags: ['JavaScript', 'Vue', 'React', 'Bootstrap', 'Sass', 'Azure SQL'],
       cards: [
-        { name: 'Dondoctor', image: '/assets/images/portfolio/dondoctor-capture.jpg' },
-        { name: 'Dondoctor', image: '/assets/images/portfolio/dondoctor-logo.png', logo: true },
-        { name: 'Agenda', kind: 'booking' },
+        { name: 'Búsqueda de servicios', image: '/assets/images/portfolio/dondoctor/dondoctor-1.png' },
+        { name: 'Agenda y pagos', image: '/assets/images/portfolio/dondoctor/dondoctor-4.png' },
+        { name: 'Servicios', image: '/assets/images/portfolio/dondoctor/dondoctor-2.png' },
+        { name: 'Perfil y calificaciones', image: '/assets/images/portfolio/dondoctor/dondoctor-5.png' },
+        { name: 'Ficha del doctor', image: '/assets/images/portfolio/dondoctor/dondoctor-3.png' },
       ],
     },
     {
       name: 'Playfan',
       summary:
         'App creada por un equipo venezolano que conecta a las personas a través de vídeos de 15 segundos en los que indican sus gustos mediante palabras clave.',
-      url: 'https://www.youtube.com/watch?v=kyZ7U-El2OY',
+      url: 'https://apkpure.com/playfan-%E2%80%93-chat-and-meet-people/com.oppous.playfan',
       color: '#ff6969',
       tags: ['JavaScript', 'AngularJS', 'Bootstrap', 'CSS'],
       cards: [
-        { name: 'Playfan', image: '/assets/images/portfolio/playfan-capture.jpg' },
-        { name: 'Playfan', image: '/assets/images/portfolio/playfan-logo.png', logo: true },
+        // Capturas de móvil: tarjetas verticales 9:16
+        { name: 'vPerfil', image: '/assets/images/portfolio/playfan/screen-0.webp', vertical: true },
+        { name: 'Descubrir', image: '/assets/images/portfolio/playfan/screen-1.webp', vertical: true },
+        { name: 'Match', image: '/assets/images/portfolio/playfan/screen-2.webp', vertical: true },
+        { name: 'Chat', image: '/assets/images/portfolio/playfan/screen-3.webp', vertical: true },
+        { name: 'Perfil', image: '/assets/images/portfolio/playfan/screen-4.webp', vertical: true },
       ],
     },
     {
       name: 'Oppous',
       summary:
         'Red social venezolana con dos perfiles: LIFE, para el entretenimiento, y WORK, con herramientas para crear proyectos personales o empresariales y dar a conocer productos, ideas y servicios.',
-      url: 'https://www.youtube.com/watch?v=nNUvc9So4Y4',
+      url: 'https://www.con-cafe.com/2013/12/13/oppous-la-nueva-generacion-en-las-redes-sociales/',
       color: '#4581f9',
       tags: ['JavaScript', 'AngularJS', 'Bootstrap', 'CSS'],
       cards: [
-        { name: 'Oppous', image: '/assets/images/portfolio/oppous-capture.jpg' },
-        { name: 'Oppous', image: '/assets/images/portfolio/oppous-logo.png', logo: true },
+        { name: 'Life + Work', image: '/assets/images/portfolio/oppous/oppous-cover.jpeg' },
+        { name: 'App', image: '/assets/images/portfolio/oppous/oppous-capture.jpg' },
+        { name: 'Life', image: '/assets/images/portfolio/oppous/oppous-1.webp' },
       ],
     },
   ] as Project[],

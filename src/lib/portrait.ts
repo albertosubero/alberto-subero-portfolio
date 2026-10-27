@@ -9,16 +9,6 @@ export type Portrait = {
 
 export const FULL_IMAGE: Portrait['crop'] = { x: 0, y: 0, w: 1, h: 1 }
 
-/** El óvalo de foco expresado respecto a la foto completa en lugar del recorte. */
-export function focusInFullImage({ crop, focus }: Portrait): Portrait['focus'] {
-  return {
-    x: crop.x + focus.x * crop.w,
-    y: crop.y + focus.y * crop.h,
-    rx: focus.rx * crop.w,
-    ry: focus.ry * crop.h,
-  }
-}
-
 /** Carga la foto y devuelve solo el recorte, en un canvas. */
 export async function loadPortrait({ src, crop }: Portrait) {
   const image = new Image()

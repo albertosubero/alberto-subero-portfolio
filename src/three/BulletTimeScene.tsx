@@ -1,4 +1,4 @@
-import { useEffect, useMemo, useRef, type RefObject } from 'react'
+import { useEffect, useMemo, useRef, type ReactNode, type RefObject } from 'react'
 import { Canvas, useFrame } from '@react-three/fiber'
 import { Bloom, EffectComposer, Noise, Vignette } from '@react-three/postprocessing'
 import { BlendFunction } from 'postprocessing'
@@ -151,15 +151,46 @@ function Rig({ progress, n, state }: { progress: MotionValue<number>; n: number;
   return null
 }
 
+// Mientras se lee el titular del acto solo se ven las partículas: placas y balas
+// aparecen cuando el titular ya se ha ido (medido sobre el scroll completo de la sección)
+const INTRO_FADE: [number, number] = [0.07, 0.1]
+
+function IntroFade({ intro, children }: { intro: MotionValue<number>; children: ReactNode }) {
+  const group = useRef<THREE.Group>(null)
+
+  useFrame(() => {
+    const g = group.current!
+    const k = smooth(THREE.MathUtils.clamp((intro.get() - INTRO_FADE[0]) / (INTRO_FADE[1] - INTRO_FADE[0]), 0, 1))
+    g.visible = k > 0.001
+    if (!g.visible) return
+    g.traverse((object) => {
+      if (object instanceof THREE.PointLight) {
+        object.userData.base ??= object.intensity
+        object.intensity = object.userData.base * k
+      }
+      if (!(object instanceof THREE.Mesh)) return
+      const material = object.material as THREE.Material
+      material.userData.base ??= material.opacity
+      material.transparent = true
+      material.opacity = material.userData.base * k
+    })
+  })
+
+  return <group ref={group}>{children}</group>
+}
+
 type SceneProps = {
+  /** Avance de la historia (0..1), sin el tramo del titular */
   progress: MotionValue<number>
+  /** Scroll completo de la sección, incluido el titular */
+  intro: MotionValue<number>
   atlas: GlyphAtlas
   panels: THREE.Texture[]
   state: RefObject<TimeState>
   active: boolean
 }
 
-export function BulletTimeScene({ progress, atlas, panels, state, active }: SceneProps) {
+export function BulletTimeScene({ progress, intro, atlas, panels, state, active }: SceneProps) {
   const n = panels.length
   const bullets = useMemo(() => makeBullets(n), [n])
   const start = useMemo(() => orbitPosition(0, 0, new THREE.Vector3()), [])
@@ -177,19 +208,21 @@ export function BulletTimeScene({ progress, atlas, panels, state, active }: Scen
       <Rig progress={progress} n={n} state={state} />
       <Particles atlas={atlas} n={n} state={state} />
 
-      {panels.map((texture, j) => (
-        <group key={j} position={center(j)}>
-          <mesh>
-            <planeGeometry args={[PANEL_WIDTH, PANEL_WIDTH / PANEL_ASPECT]} />
-            <meshBasicMaterial map={texture} transparent toneMapped={false} side={THREE.DoubleSide} />
-          </mesh>
-          <pointLight color="#00ff41" intensity={8} distance={9} position={[0, 0, 1.5]} />
-        </group>
-      ))}
+      <IntroFade intro={intro}>
+        {panels.map((texture, j) => (
+          <group key={j} position={center(j)}>
+            <mesh>
+              <planeGeometry args={[PANEL_WIDTH, PANEL_WIDTH / PANEL_ASPECT]} />
+              <meshBasicMaterial map={texture} transparent toneMapped={false} side={THREE.DoubleSide} />
+            </mesh>
+            <pointLight color="#00ff41" intensity={8} distance={9} position={[0, 0, 1.5]} />
+          </group>
+        ))}
 
-      {bullets.map((spec, i) => (
-        <Bullet key={i} spec={spec} state={state} />
-      ))}
+        {bullets.map((spec, i) => (
+          <Bullet key={i} spec={spec} state={state} />
+        ))}
+      </IntroFade>
 
       <EffectComposer multisampling={0}>
         <Bloom mipmapBlur intensity={1.1} luminanceThreshold={0.25} luminanceSmoothing={0.3} />

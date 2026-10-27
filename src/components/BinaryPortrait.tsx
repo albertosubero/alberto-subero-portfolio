@@ -1,6 +1,6 @@
 import { useEffect, useRef, type PointerEvent } from 'react'
 import { useReducedMotion } from 'framer-motion'
-import { FULL_IMAGE, fadeOutsideFocus, focusInFullImage, loadPortrait, type Portrait } from '../lib/portrait'
+import { FULL_IMAGE, loadPortrait, type Portrait } from '../lib/portrait'
 import styles from './BinaryPortrait.module.css'
 
 const INK = '#0d0208'
@@ -105,26 +105,17 @@ export function BinaryPortrait({ portrait, alt, columns = 84 }: Props) {
       const rows = Math.ceil(height / cell)
       const source = full ?? drawPlaceholder(Math.round(width), Math.round(height))
 
-      // Muestreo de luminancia a resolución de celda
-      const sampleDarkness = (fadeBackground: boolean) => {
-        const sample = document.createElement('canvas')
-        sample.width = columns
-        sample.height = rows
-        const sctx = sample.getContext('2d', { willReadFrequently: true })!
-        sctx.filter = 'grayscale(1) contrast(1.4)'
-        const rect = drawCover(sctx, source, columns, rows)
-        sctx.filter = 'none'
-        if (portrait && fadeBackground) fadeOutsideFocus(sctx, rect, focusInFullImage(portrait), '#fff')
-        const data = sctx.getImageData(0, 0, columns, rows).data
-        const result = new Float32Array(columns * rows)
-        for (let i = 0; i < result.length; i++) result[i] = 1 - data[i * 4] / 255
-        if (portrait) stretchLevels(result)
-        return result
-      }
-      // Antes del revelado el fondo se funde a blanco (la persona se lee en código);
-      // la lente, sobre la foto ya completa, muestra el código de toda la imagen
-      const darkness = sampleDarkness(true)
-      const darknessFull = portrait ? sampleDarkness(false) : darkness
+      // Muestreo de luminancia a resolución de celda: la imagen completa, sin fundidos
+      const sample = document.createElement('canvas')
+      sample.width = columns
+      sample.height = rows
+      const sctx = sample.getContext('2d', { willReadFrequently: true })!
+      sctx.filter = 'grayscale(1) contrast(1.4)'
+      drawCover(sctx, source, columns, rows)
+      const data = sctx.getImageData(0, 0, columns, rows).data
+      const darkness = new Float32Array(columns * rows)
+      for (let i = 0; i < darkness.length; i++) darkness[i] = 1 - data[i * 4] / 255
+      if (portrait) stretchLevels(darkness)
 
       // La foto final: completa, ocupando todo el rectángulo y sin fundidos
       const photo = document.createElement('canvas')
@@ -191,7 +182,7 @@ export function BinaryPortrait({ portrait, alt, columns = 84 }: Props) {
             const x = (col + 0.5) * cell
             const y = (row + 0.5) * cell
             const inLens = lens > 1 && Math.hypot(x - px, y - py) < lens
-            const d = revealed ? darknessFull[i] : darkness[i]
+            const d = darkness[i]
             // Se ve código si (no revelado y fuera de la lente) o (revelado y dentro de ella)
             if (revealed !== inLens && !edge) continue
             if (d < 0.12 && !edge) continue
